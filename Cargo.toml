@@ -162,8 +162,7 @@ md5 = "0.8.0"
 # tar archive extraction for snapshot bootstrapping (#119)
 tar = "0.4"
 
-# Directory traversal for stale-documentation checks (bins + build script)
-walkdir = "2"
+
 
 [build-dependencies]
 chrono = "0.4"
@@ -259,4 +258,4 @@ path = "src/bin/stellar-metrics-proxy.rs"
 
 
 [workspace]
-members = ["wasm-plugins", "telemetry", "security/p2p-firewall", "controller"]
+
