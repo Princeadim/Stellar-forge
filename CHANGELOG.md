@@ -5,6 +5,30 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
+## Chart v2.36.0 (2026-10-28) [minor]
+
+• Merge pull request #447 from DanielTobiDev/feat/issue-244-enhancement-real-time-configmap-hot-reloader
+✨ feat: add ConfigMap hot-reloader for core params
+• Merge pull request #639 from Chidi-Dev1/drips/4
+• Add bounded fail-open Wasm caching layer for Soroban RPC state reads
+✨ feat: add fail-open Wasm LRU cache for Soroban RPC state reads
+• Closes #4
+🐛 fix: resolve merge conflicts with base
+• Merge pull request #446 from notoflagosola-wq/feat/issue-242-safe-bucket-pruner
+✨ feat(controller): add safe local bucket pruning
+• Merge branch 'main' into feat/issue-242-safe-bucket-pruner
+• Merge branch 'main' into feat/issue-242-safe-bucket-pruner
+🐛 fix: resolve merge conflicts with base
+🐛 fix: resolve merge conflicts with base
+🐛 fix(ci): resolve failing checks for #447
+✨ feat: ## [Enhancement] Real-Time ConfigMap Hot-Reloader for Core P (#244)
+✨ feat(controller): add safe local bucket pruning
+• Add async local bucket scanning and retention planning with explicit safety snapshots, cooperative reader locks, and dry-run defaults. Document the limits of the current Core/Horizon integration.
+• Closes #242
+• Signed-off-by: ola196 <oladayoshola25@gmail.com>
+• Co-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>
+
+
 ## Chart v2.35.0 (2026-10-27) [minor]
 
 • Merge pull request #452 from Akindoyin538/simple/290-318-320-321
