@@ -5,6 +5,34 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
+## Chart v2.37.0 (2026-10-28) [minor]
+
+• Merge pull request #443 from Chidi-Dev1/feat/snapshot-controller-issue-243
+✨ feat(controller): add ephemeral storage snapshot controller (#243)
+• Merge branch 'main' into feat/snapshot-controller-issue-243
+• Merge branch 'main' into feat/snapshot-controller-issue-243
+✨ feat(controller): add ephemeral storage snapshot controller (#243)
+• Implements the full VolumeSnapshot lifecycle for Stellar validator PVCs
+• to enable near-instant horizontal scaling via storage cloning.
+• Changes:
+• - controller/src/snapshots/cloud_api.rs: SnapshotClient trait with AWS
+•   EBS and GCP Persistent Disk adapters (CreateSnapshot, DescribeSnapshots /
+•   disks.createSnapshot, snapshots.get), MockSnapshotClient for CI
+• - controller/src/snapshots/volume.rs: SnapshotController orchestrating
+•   fsync coordination with Stellar Core (stop-writes / resume-writes),
+•   cloud snapshot creation, ready-state polling, PVC clone spec generation
+•   (with stellar.org/* annotations), and sync verification (5-min deadline)
+• - controller/src/snapshots/mod.rs: module re-exports
+• - controller/src/lib.rs: expose snapshots module
+• - tests/snapshots_integration_test.rs: 15 integration tests covering full
+•   lifecycle, PVC clone spec correctness, concurrent requests, AWS/GCP
+•   client config validation, cloud error propagation, and cloud-provider
+•   display labels
+• All 48 controller unit + integration tests pass. Build is warning-free
+• for the snapshots module.
+• Closes #243
+
+
 ## Chart v2.36.0 (2026-10-28) [minor]
 
 • Merge pull request #447 from DanielTobiDev/feat/issue-244-enhancement-real-time-configmap-hot-reloader
