@@ -2,18 +2,22 @@
 name = "controller"
 version = "0.1.0"
 edition = "2021"
-description = "Stellar-K8s controller: deployment pipeline and admission webhook modules"
+description = "Stellar-K8s controller: deployment pipeline, admission webhook and ephemeral testnet operator modules"
 license = "Apache-2.0"
 
 [dependencies]
 # Async runtime
 tokio = { version = "1", features = ["full"] }
 
-# HTTP client for sidecar communication
+# HTTP client for sidecar communication and cloud provider API calls
 reqwest = { version = "0.12", default-features = false, features = [
     "json",
     "rustls-tls-manual-roots",
+    "rustls-tls",
 ] }
+
+# Async traits (used by CloudVolumeVerifier and KubeClient)
+async-trait = "0.1"
 
 # HTTP server (sidecar + axum handler)
 axum = { version = "0.8", features = [] }
@@ -21,11 +25,10 @@ axum = { version = "0.8", features = [] }
 # Serialization
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
+toml = "0.8"
 
 # Base64 encoding/decoding (WASM binary field in StellarNode spec)
 base64 = "0.21"
-
-# Error handling
 anyhow = "1"
 thiserror = "1"
 
@@ -35,13 +38,20 @@ libc = "0.2"
 # Logging
 tracing = "0.1"
 
+# Async trait support (used by ingestion::worker::LedgerProcessor)
+async-trait = "0.1"
+
 # Temporary files for wasm-opt subprocess I/O
 tempfile = "3"
+
+
 
 [dev-dependencies]
 tokio = { version = "1", features = ["full", "test-util"] }
 axum = { version = "0.8", features = [] }
 serde_json = "1"
 base64 = "0.21"
+# Mock HTTP server for exercising the AWS EBS / GCP PD request round-trips
+# without a live cloud. Pinned to match the version used elsewhere in the repo.
+wiremock = "=0.6.5"
 
-[workspace]
