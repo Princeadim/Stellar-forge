@@ -31,6 +31,4 @@
 //!   orphaned finalizers without risking data loss.
 //! - [`quorum`] — Quorum-set graph analysis utilities.
 
-pub mod deployment;
-
 pub mod quorum;
