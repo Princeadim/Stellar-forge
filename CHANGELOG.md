@@ -5,6 +5,32 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 
 
+## Chart v2.38.0 (2026-10-28) [minor]
+
+• Merge pull request #522 from supreme2580/feat/captive-core-supervisor
+✨ feat(captive): Captive Core process lifecycle supervisor with failure detection
+• Merge branch 'main' into feat/captive-core-supervisor
+• Merge pull request #444 from ifygreg01-best/feat/ingestion-ring-buffer-75
+✨ feat(ingestion): XDR ledger ring buffer & stream manager (#75)
+• Merge branch 'main' into feat/ingestion-ring-buffer-75
+✨ feat(captive): implement Captive Core process lifecycle supervisor
+✨ feat(ingestion): add XDR ledger ring buffer & stream manager (#75)
+• - controller/src/ingestion/buffer.rs: bounded LedgerBuffer with
+•   three configurable backpressure strategies (Block, DropNewest,
+•   DropOldest), atomic pushed/popped/dropped counters, and
+•   Notify-based producer/consumer wakeup
+• - controller/src/ingestion/worker.rs: LedgerProcessor async trait,
+•   ProducerPool + clonable ProducerHandle, ConsumerPool with N
+•   parallel worker tasks, WorkerPool builder facade, per-worker
+•   WorkerStats and PoolStats snapshots
+• - controller/src/ingestion/mod.rs: StreamManager high-level
+•   coordinator with StreamConfig (capacity, concurrency, strategy)
+• - controller/src/lib.rs: expose pub mod ingestion
+• - controller/Cargo.toml: add async-trait = "0.1" dependency
+• 18 tests across all three modules including a 10 000-frame
+• throughput benchmark validating the 10 000 ledgers/min requirement.
+
+
 ## Chart v2.37.0 (2026-10-28) [minor]
 
 • Merge pull request #443 from Chidi-Dev1/feat/snapshot-controller-issue-243
