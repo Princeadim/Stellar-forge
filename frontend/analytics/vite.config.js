@@ -1,6 +1,11 @@
 import { defineConfig } from 'vite';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import react from '@vitejs/plugin-react';
+import { createRequire } from 'module';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const require = createRequire(import.meta.url);
 
 export default defineConfig({
   plugins: [react()],
@@ -12,6 +17,7 @@ export default defineConfig({
         main: path.resolve(__dirname, 'index.html'),
         perf: path.resolve(__dirname, 'perf.html'),
       },
+      external: ['d3'],
     },
   },
   resolve: {
@@ -44,11 +50,6 @@ export default defineConfig({
         target: 'http://localhost:9091',
         rewrite: (path) => path.replace(/^\/mock-prom/, ''),
       },
-    },
-  },
-  build: {
-    rollOptions: {
-      external: ['d3'],
     },
   },
 });
